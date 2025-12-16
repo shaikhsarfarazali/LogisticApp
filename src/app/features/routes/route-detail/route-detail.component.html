@@ -1,0 +1,44 @@
+<p *ngIf="loading">Loading route details...</p>
+
+<ng-container *ngIf="!loading">
+    <ng-container *ngIf="route; else notFound">
+        <h2 class="header-flex">Route Detail</h2>
+        <p><b>Route #:</b> {{ route.routeNumber }}</p>
+        <p><b>Scheduled:</b> {{ route.scheduledDate | date:'short' }}</p>
+        <p><b>Status:</b> {{ route.status }}</p>
+
+        <div class="assigned-truck-box" *ngIf="route.truck">
+            <h4 class="header-flex">Assigned Truck</h4>
+            <ul>
+                <li><b>Registration #:</b> {{ route.truck.registrationNumber }}</li>
+                <li><b>Model:</b> {{ route.truck.model }}</li>
+                <li><b>Capacity:</b> {{ route.truck.capacity }}</li>
+                <li><b>Status:</b> {{ route.truck.status }}</li>
+            </ul>
+        </div>
+
+        <ng-container *ngIf="route.loads && route.loads.length; else noLoads">
+            <h4>Loads</h4>
+            <table class="mat-elevation-z2 material-table">
+                <tr>
+                    <th>Reference</th>
+                    <th>Pickup</th>
+                    <th>Delivery</th>
+                    <th>Status</th>
+                </tr>
+                <tr *ngFor="let load of route.loads">
+                    <td>{{ load.referenceNumber }}</td>
+                    <td>{{ load.pickupAddress }}</td>
+                    <td>{{ load.deliveryAddress }}</td>
+                    <td>{{ load.status }}</td>
+                </tr>
+            </table>
+        </ng-container>
+        <ng-template #noLoads>
+            <p>No loads assigned.</p>
+        </ng-template>
+    </ng-container>
+    <ng-template #notFound>
+        <p>Route not found.</p>
+    </ng-template>
+</ng-container>

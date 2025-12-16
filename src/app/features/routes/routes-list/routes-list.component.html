@@ -1,0 +1,28 @@
+<h2 class="header-flex">
+    Routes
+    <button class="common-btn" (click)="redirectToCreateRoute()">Create New
+        Route</button>
+</h2>
+
+<table class="mat-elevation-z2 material-table" *ngIf="!loading">
+    <tr>
+        <th>Route #</th>
+        <th>Scheduled</th>
+        <th>Status</th>
+        <th>Truck</th>
+        <th># Loads</th>
+        <th>Details</th>
+    </tr>
+    <tr *ngFor="let route of routes">
+        <td>{{ route.routeNumber }}</td>
+        <td>{{ route.scheduledDate | date: 'short' }}</td>
+        <td>{{ route.status }}</td>
+        <td>{{ route.truck?.registrationNumber || '(unassigned)' }}</td>
+        <td>{{ route.loads?.length ?? 0 }}</td>
+        <td>
+            <a [routerLink]="['/routes', route.id]">View</a>
+        </td>
+    </tr>
+</table>
+
+<p *ngIf="loading">Loading...</p>

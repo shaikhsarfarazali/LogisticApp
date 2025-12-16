@@ -1,0 +1,21 @@
+<div class="header-flex">
+    <h2>Trucks</h2>
+    <button class="common-btn" (click)="redirectToCreateTruck()">Create New
+        Truck</button>
+</div>
+<table class="mat-elevation-z2 material-table" *ngIf="!loading">
+    <tr>
+        <th>Registration #</th>
+        <th>Model</th>
+        <th>Capacity</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let truck of trucks">
+        <td>{{ truck.registrationNumber }}</td>
+        <td>{{ truck.model }}</td>
+        <td>{{ truck.capacity }}</td>
+        <td>{{ truck.status }}</td>
+    </tr>
+</table>
+
+<p *ngIf="loading">Loading...</p>

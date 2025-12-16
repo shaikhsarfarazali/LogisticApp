@@ -1,0 +1,22 @@
+<div class="header-flex">
+    <h2>Loads</h2>
+    <button class="common-btn" (click)="redirectToCreateLoad()">Create New
+        Load</button>
+</div>
+
+<table class="mat-elevation-z2 material-table" *ngIf="!loading">
+    <tr>
+        <th>Reference</th>
+        <th>Pickup</th>
+        <th>Delivery</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let load of loads">
+        <td>{{ load.referenceNumber }}</td>
+        <td>{{ load.pickupAddress }}</td>
+        <td>{{ load.deliveryAddress }}</td>
+        <td>{{ load.status }}</td>
+    </tr>
+</table>
+
+<p *ngIf="loading">Loading...</p>

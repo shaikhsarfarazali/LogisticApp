@@ -1,0 +1,64 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.sidebar {
+  width: 220px;
+  background: #2196f3;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+
+  .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+    text-align: center;
+    background: #0171cd; /* Azure Blue, lighter than sidebar */
+    letter-spacing: 1px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+
+    a {
+      color: #e6efff;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+      border-left: 4px solid transparent;
+
+      .icon {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+
+      &:hover,
+      &.active {
+        background: #017ce1; /* MS Fluent/Azure Blue */
+        color: #fff;
+        border-left: 4px solid #50a7f7; /* Azure accent */
+      }
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  background: #f2f6fc; /* Very light azure background */
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Optional: Improve scrollbars for a more Azure look */
+.sidebar nav {
+  scrollbar-width: thin;
+  scrollbar-color: #0057b8 #001c3d;
+}

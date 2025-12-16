@@ -1,0 +1,55 @@
+<button class="common-btn" type="button" (click)="goBack()">
+    <span class="big-arrow">&#8592;</span>
+</button>
+<h2 class="create-headline">Create Route</h2>
+<form class="material-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+        <label>
+            Route Number:
+            <input class="material-input" formControlName="routeNumber" required maxlength="20" />
+        </label>
+        <div *ngIf="routeNumber?.invalid && (routeNumber?.touched)" class="validation-error">
+            <span *ngIf="routeNumber?.errors?.['required']">Route Number is required.</span>
+            <span *ngIf="routeNumber?.errors?.['maxlength']">Maximum 20 characters allowed.</span>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label>
+            Scheduled Date:
+            <input class="material-input" type="datetime-local" formControlName="scheduledDate" required />
+        </label><br>
+    </div>
+
+    <!-- Truck selection, only available trucks -->
+    <div class="input-group">
+        <label>
+            Assign Truck:
+            <select class="material-input" formControlName="truckId">
+                <option value="" disabled selected>Select Truck</option>
+                <option *ngFor="let truck of availableTrucks" [value]="truck.id">
+                    {{ truck.registrationNumber }} - {{ truck.model }}
+                </option>
+            </select>
+        </label>
+    </div>
+
+    <div class="dropdown">
+        <button type="button" (click)="dropdownOpen = !dropdownOpen" class="dropbtn">
+            Select Loads
+        </button>
+        <div class="dropdown-content" [style.display]="dropdownOpen ? 'block' : 'none'">
+            <label *ngFor="let load of loads" class="dropdown-item">
+                <input type="checkbox" [value]="load.id" (change)="onCheckboxChange(load.id, $event)"
+                    [checked]="form.value.loadIds.includes(load.id)" />
+                {{load.referenceNumber}}
+            </label>
+        </div>
+        <div *ngIf="loadsControl?.invalid && loadsControl?.touched" class="validation-error">
+            <span *ngIf="loadsControl?.errors?.['atLeastOne']">Please select at least one load.</span>
+        </div>
+    </div>
+
+    <button class="submit-btn" type="submit" [disabled]="form.invalid || loading">Create</button>
+    <span class="error-text" *ngIf="error">{{ error }}</span>
+</form>

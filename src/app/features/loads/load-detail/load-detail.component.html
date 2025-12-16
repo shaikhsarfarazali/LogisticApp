@@ -1,0 +1,40 @@
+<button class="common-btn" type="button" (click)="goBack()">
+    <span class="big-arrow">&#8592;</span>
+</button>
+<h2 class="create-headline">Create Load</h2>
+<form class="material-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+        <label>
+            Reference Number:
+            <input class="material-input" formControlName="referenceNumber" required maxlength="20" />
+        </label>
+        <div *ngIf="referenceNumber?.invalid && (referenceNumber?.touched)" class="validation-error">
+            <span *ngIf="referenceNumber?.errors?.['required']">Reference Number is required.</span>
+            <span *ngIf="referenceNumber?.errors?.['maxlength']">Maximum 20 characters allowed.</span>
+        </div>
+    </div>
+    <div class="input-group">
+        <label>
+            Pickup Address:
+            <input class="material-input" formControlName="pickupAddress" required maxlength="100" />
+        </label>
+        <div *ngIf="pickupAddress?.invalid && (pickupAddress?.touched)" class="validation-error">
+            <span *ngIf="pickupAddress?.errors?.['required']">Pickup Address is required.</span>
+            <span *ngIf="pickupAddress?.errors?.['maxlength']">Maximum 100 characters allowed.</span>
+        </div>
+    </div>
+    <div class="input-group">
+        <label>
+            Delivery Address:
+            <input class="material-input" formControlName="deliveryAddress" required maxlength="100" />
+        </label>
+        <div *ngIf="deliveryAddress?.invalid && (deliveryAddress?.touched)" class="validation-error">
+            <span *ngIf="deliveryAddress?.errors?.['required']">Delivery Address is required.</span>
+            <span *ngIf="deliveryAddress?.errors?.['maxlength']">Maximum 100 characters allowed.</span>
+        </div>
+    </div>
+    <button class="submit-btn" type="submit" [disabled]="form.invalid || loading">
+        Create
+    </button>
+    <span *ngIf="error" class="error-text">{{ error }}</span>
+</form>
