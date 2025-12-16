@@ -1,5 +1,8 @@
 <p *ngIf="loading">Loading route details...</p>
 
+<button class="common-btn" type="button" (click)="goBack()">
+    <span class="big-arrow">&#8592;</span>
+</button>
 <ng-container *ngIf="!loading">
     <ng-container *ngIf="route; else notFound">
         <h2 class="header-flex">Route Detail</h2>
