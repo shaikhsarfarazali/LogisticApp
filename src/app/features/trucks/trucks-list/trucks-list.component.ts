@@ -20,6 +20,7 @@ export class TrucksListComponent implements OnInit {
   ngOnInit() {
     this.truckService.getAll().subscribe({
       next: trucks => {
+        // 
         this.trucks = trucks;
         this.loading = false;
       },
