@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Truck } from '../models/truck.model';
@@ -7,8 +7,7 @@ import { environment } from '../../environments/environment';
 @Injectable({ providedIn: 'root' })
 export class TruckService {
     private apiUrl = `${environment.apiUrl}trucks`;
-
-    constructor(private http: HttpClient) { }
+    private http = inject(HttpClient);
 
     getAll(): Observable<Truck[]> {
         return this.http.get<Truck[]>(this.apiUrl);

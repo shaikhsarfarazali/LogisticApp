@@ -11,12 +11,11 @@ import { Router } from '@angular/router';
   styleUrl: './trucks-list.component.scss'
 })
 export class TrucksListComponent implements OnInit {
-
   private router = inject(Router);
+  private truckService = inject(TruckService);
+
   trucks: Truck[] = [];
   loading = true;
-
-  constructor(private truckService: TruckService) { }
 
   ngOnInit() {
     this.truckService.getAll().subscribe({

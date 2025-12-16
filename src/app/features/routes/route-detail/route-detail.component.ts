@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouteService } from '../../../core/api/route.service';
 import { Route } from '../../../core/models/route.model';
@@ -11,13 +11,11 @@ import { sharedImports } from '../../../shared/shared-imports';
   styleUrl: './route-detail.component.scss'
 })
 export class RouteDetailComponent implements OnInit {
+  private routeSvc = inject(RouteService);
+  private activatedRoute = inject(ActivatedRoute);
+
   route: Route | null = null;
   loading = true;
-
-  constructor(
-    private routeSvc: RouteService,
-    private activatedRoute: ActivatedRoute
-  ) { }
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id')!;
