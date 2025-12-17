@@ -23,4 +23,8 @@ export class RouteService {
     create(data: Partial<Route>): Observable<Route> {
         return this.http.post<Route>(this.apiUrl, data);
     }
+
+    assignTruck(routeId: string, truckId: string) {
+        return this.http.put(`${this.apiUrl}/${routeId}/assign-truck`, { truckId });
+    }
 }

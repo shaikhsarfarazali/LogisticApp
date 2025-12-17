@@ -1,0 +1,56 @@
+.truck-select-panel {
+  margin: 1.5rem 0;
+  padding: 1.5rem 1rem;
+  background: #f2f7fb;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px 0 #0057b85c;
+  max-width: 350px;
+}
+
+.truck-select-panel label {
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.truck-select-panel select {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #bcd;
+  width: 100%;
+  margin-bottom: 1rem;
+  background: #ffffff;
+  font-size: 1rem;
+  color: #205081;
+  transition: border-color 0.2s;
+}
+
+.truck-select-panel select:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+.truck-select-panel button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+  cursor: pointer;
+  margin-left: 0;
+  transition: background 0.2s;
+}
+
+.truck-select-panel button:disabled {
+  background: #aac4ec;
+  cursor: not-allowed;
+}
+
+.truck-select-panel span {
+  margin-left: 10px;
+  font-size: 1rem;
+  vertical-align: middle;
+}

@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouteService } from '../../../core/api/route.service';
 import { Route } from '../../../core/models/route.model';
 import { sharedImports } from '../../../shared/shared-imports';
+import { AssignTruckComponent } from '../../trucks/assign-truck/assign-truck.component';
 
 @Component({
   selector: 'app-route-detail',
-  imports: [sharedImports],
+  imports: [sharedImports, AssignTruckComponent],
   templateUrl: './route-detail.component.html',
   styleUrl: './route-detail.component.scss'
 })
@@ -19,6 +20,11 @@ export class RouteDetailComponent implements OnInit {
   loading = true;
 
   ngOnInit() {
+    this.loadRoute();
+  }
+
+  loadRoute() {
+    this.loading = true;
     const id = this.activatedRoute.snapshot.paramMap.get('id')!;
     this.routeSvc.getById(id).subscribe({
       next: (data) => {
@@ -30,6 +36,10 @@ export class RouteDetailComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  reload() {
+    this.loadRoute();
   }
 
   goBack() {

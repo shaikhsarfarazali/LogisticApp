@@ -1,0 +1,11 @@
+<div class="truck-select-panel">
+    <label for="truckSelect"><b>Select Truck:</b></label>
+    <select id="truckSelect" [(ngModel)]="selectedTruckId">
+        <option *ngFor="let truck of availableTrucks" [value]="truck.id">
+            {{truck.registrationNumber}} ({{truck.model}})
+        </option>
+    </select>
+    <button (click)="assignTruck()" [disabled]="!selectedTruckId || assigning">Assign Truck</button>
+    <span *ngIf="error" style="color:#bf1a2f;">{{error}}</span>
+    <span *ngIf="success" style="color:#229A65;">{{success}}</span>
+</div>

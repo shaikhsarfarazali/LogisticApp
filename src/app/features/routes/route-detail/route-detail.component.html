@@ -1,10 +1,14 @@
-<p *ngIf="loading">Loading route details...</p>
+<div *ngIf="loading" class="global-loader-overlay">
+    <div class="simple-spinner"></div>
+    <span>Loading route details...</span>
+</div>
 
 <button class="common-btn" type="button" (click)="goBack()">
     <span class="big-arrow">&#8592;</span>
 </button>
 <ng-container *ngIf="!loading">
     <ng-container *ngIf="route; else notFound">
+
         <h2 class="header-flex">Route Detail</h2>
         <p><b>Route #:</b> {{ route.routeNumber }}</p>
         <p><b>Scheduled:</b> {{ route.scheduledDate | date:'short' }}</p>
@@ -18,6 +22,9 @@
                 <li><b>Capacity:</b> {{ route.truck.capacity }}</li>
                 <li><b>Status:</b> {{ route.truck.status }}</li>
             </ul>
+            <!-- Truck assign/change component goes here: -->
+            <app-assign-truck [routeId]="route.id" (truckAssigned)="reload()">
+            </app-assign-truck>
         </div>
 
         <ng-container *ngIf="route.loads && route.loads.length; else noLoads">
