@@ -42,7 +42,7 @@
             <label *ngFor="let load of loads" class="dropdown-item">
                 <input type="checkbox" [value]="load.id" (change)="onCheckboxChange(load.id, $event)"
                     [checked]="form.value.loadIds.includes(load.id)" />
-                {{load.referenceNumber}}
+                {{load.referenceNumber}}({{load.capacity}})
             </label>
         </div>
         <div *ngIf="loadsControl?.invalid && loadsControl?.touched" class="validation-error">

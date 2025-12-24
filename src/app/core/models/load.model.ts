@@ -4,5 +4,6 @@ export interface Load {
     pickupAddress: string;
     deliveryAddress: string;
     status: string;
+    capacity: number;
     routeId?: string | null;
 }

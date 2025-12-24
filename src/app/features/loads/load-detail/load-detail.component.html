@@ -33,6 +33,17 @@
             <span *ngIf="deliveryAddress?.errors?.['maxlength']">Maximum 100 characters allowed.</span>
         </div>
     </div>
+    <div class="input-group">
+        <label>
+            Capacity:
+            <input class="material-input" type="number" min="1" max="50000" formControlName="capacity" required />
+        </label>
+        <div *ngIf="capacity?.invalid && capacity?.touched" class="validation-error">
+            <span *ngIf="capacity?.errors?.['required']">Capacity is required.</span>
+            <span *ngIf="capacity?.errors?.['min']">Capacity must be positive.</span>
+            <span *ngIf="capacity?.errors?.['max']">Capacity can be more then 50000.</span>
+        </div>
+    </div>
     <button class="submit-btn" type="submit" [disabled]="form.invalid || loading">
         Create
     </button>

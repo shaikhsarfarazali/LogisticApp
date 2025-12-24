@@ -95,13 +95,23 @@ export class RouteCreateComponent implements OnInit {
   onSubmit() {
     this.error = null;
     this.loading = true;
+
+
+    let selectedTruck = this.availableTrucks.filter(at => at.id == this.truckId?.value)[0];
+    let selectedLoads = this.loads.filter(l => this.form.value.loadIds.includes(l.id));
+    let totalLoadCapacity = selectedLoads.reduce((sum, load) => sum + (load.capacity || 0), 0);
+    if (selectedTruck && totalLoadCapacity > selectedTruck.capacity) {
+      alert("Total load capacity " + totalLoadCapacity + " exceeds truck capacity " + selectedTruck.capacity);
+      this.loading = false;
+      return;
+    }
     const dto = {
       ...this.form.value,
       scheduledDate: new Date(this.form.value.scheduledDate).toISOString(),
     };
     this.routeService.create(dto).subscribe({
       next: () => this.router.navigate(['/routes']),
-      error: () => { this.error = 'Failed to create'; this.loading = false; }
+      error: (error) => { alert(error.error); this.loading = false; }
     });
   }
 

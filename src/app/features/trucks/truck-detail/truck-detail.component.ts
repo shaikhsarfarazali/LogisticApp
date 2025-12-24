@@ -15,8 +15,10 @@ export class TruckDetailComponent {
   private truckService = inject(TruckService);
   private router = inject(Router);
 
+  regeristrationNoRegex: string = "^[A-Za-z]{2}\d{2}[A-Za-z]{2}\d{4}$"
+
   form = this.fb.group({
-    registrationNumber: ['', Validators.required],
+    registrationNumber: ['', [Validators.required, Validators.pattern(this.regeristrationNoRegex)]],
     model: ['', Validators.required],
     capacity: [0, [Validators.required, Validators.min(1)]],
   }, { nonNullable: true });

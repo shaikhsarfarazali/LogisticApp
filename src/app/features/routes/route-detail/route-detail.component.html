@@ -34,12 +34,14 @@
                     <th>Reference</th>
                     <th>Pickup</th>
                     <th>Delivery</th>
+                    <th>Capacity</th>
                     <th>Status</th>
                 </tr>
                 <tr *ngFor="let load of route.loads">
                     <td>{{ load.referenceNumber }}</td>
                     <td>{{ load.pickupAddress }}</td>
                     <td>{{ load.deliveryAddress }}</td>
+                    <td>{{ load.capacity }}</td>
                     <td>{{ load.status }}</td>
                 </tr>
             </table>

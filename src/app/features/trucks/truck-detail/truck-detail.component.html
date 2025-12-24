@@ -13,6 +13,9 @@
         <div *ngIf="registrationNumber?.invalid && registrationNumber?.touched" class="validation-error">
             <span *ngIf="registrationNumber?.errors?.['required']">Registration is required.</span>
             <span *ngIf="registrationNumber?.errors?.['maxlength']">Max 20 chars allowed.</span>
+            <div *ngIf="registrationNumber?.errors?.['pattern']">
+                Registration number must be in format: 2 letters, 2 digits, 2 letters, 4 digits (e.g., AB12CD3456).
+            </div>
         </div>
     </div>
 

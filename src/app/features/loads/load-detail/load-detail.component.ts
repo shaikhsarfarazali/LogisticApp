@@ -19,6 +19,7 @@ export class LoadDetailComponent {
     referenceNumber: ['', [Validators.required, Validators.maxLength(20)]],
     pickupAddress: ['', [Validators.required, Validators.maxLength(100)]],
     deliveryAddress: ['', [Validators.required, Validators.maxLength(100)]],
+    capacity: ['', [Validators.required, Validators.max(50000)]],
   }, { nonNullable: true });
 
   get referenceNumber() {
@@ -31,6 +32,10 @@ export class LoadDetailComponent {
 
   get deliveryAddress() {
     return this.form.get('deliveryAddress');
+  }
+
+  get capacity() {
+    return this.form.get('capacity');
   }
 
   loading = false;
